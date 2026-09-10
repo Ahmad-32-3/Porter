@@ -1,0 +1,30 @@
+origin: http://campus:8081
+listen: :8080
+redis: redis:6379
+
+routes:
+  - prefix: /grades
+    mode: wait
+    max_active: 20
+    overflow_active: 5
+  - prefix: /tax
+    mode: pass
+  - prefix: /transcript
+    mode: pass
+  - prefix: /static
+    mode: collapse
+  - prefix: /api/grades-status
+    mode: collapse
+
+fail:
+  redis_down_pass: open
+  redis_down_wait: closed
+
+cookie:
+  name: porter_ticket
+  http_only: true
+  same_site: Lax
+
+poll:
+  min_ms: 1500
+  jitter_ms: 800

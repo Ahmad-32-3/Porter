@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Waiting for grades</title>
+  <meta http-equiv="Cache-Control" content="no-store">
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 2rem auto; max-width: 40rem; font: 1.05rem/1.45 system-ui, sans-serif; color: #f4f6f7; background: #08090a; }
+    h1 { font-size: 1.4rem; font-weight: 600; }
+    .pos { font-size: 1.15rem; }
+    form { margin: 1.25rem 0; }
+    button, a.btn { background: #171b1e; color: #f4f6f7; border: 1px solid #35c9b4; padding: 0.5rem 0.9rem; font: inherit; cursor: pointer; text-decoration: none; display: inline-block; }
+    .muted { color: #8a9499; }
+  </style>
+</head>
+<body>
+  <h1>Grades line</h1>
+  <p class="pos" id="position" aria-live="polite">You are in position {{.Position}}.</p>
+  <p>Rough wait: about {{.WaitHint}}.</p>
+  <p class="muted">This page polls every {{.PollMin}}ms plus up to {{.PollJitter}}ms of jitter. It does not load your grades until you open them.</p>
+  <p>Ready: <span id="ready">{{if .Ready}}yes{{else}}not yet{{end}}</span></p>
+  <p><a class="btn" href="{{.OpenURL}}">Open grades</a></p>
+  <form method="post" action="{{.OpenURL}}">
+    <input type="hidden" name="overflow" value="1">
+    <button type="submit">Try anyway</button>
+  </form>
+  <p class="muted">Try anyway uses a small overflow lane. It is not a skip.</p>
+  <script>
+    (function () {
+      var min = {{.PollMin}};
+      var jitter = {{.PollJitter}};
+      var url = {{.PollURLJSON}};
+      function tick() {
+        fetch(url, { headers: { Accept: "application/json" }, cache: "no-store", credentials: "same-origin" })
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            if (d.admitted) { window.location = {{.OpenURLJSON}}; return; }
+            var p = document.getElementById("position");
+            if (p && d.position) p.textContent = "You are in position " + d.position + ".";
+            var ready = document.getElementById("ready");
+            if (ready) ready.textContent = d.ready ? "yes" : "not yet";
+          })
+          .catch(function () {});
+        setTimeout(tick, min + Math.floor(Math.random() * jitter));
+      }
+      setTimeout(tick, min + Math.floor(Math.random() * jitter));
+    })();
+  </script>
+</body>
+</html>

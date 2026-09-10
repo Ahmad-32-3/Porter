@@ -1,0 +1,70 @@
+/* Snapshot of grep-vs-embeddings tokens. Copied by hand, not imported. */
+:root {
+  --bg-page: #08090a;
+  --bg-sunk: #050607;
+  --bg-surface: #101315;
+  --bg-raised: #171b1e;
+  --bg-accent-wash: rgba(53, 201, 180, 0.1);
+
+  --line-hairline: rgba(233, 238, 240, 0.1);
+  --line-rule: rgba(233, 238, 240, 0.18);
+  --line-strong: rgba(233, 238, 240, 0.34);
+
+  --fg-hi: #f4f6f7;
+  --fg: #b9c2c7;
+  --fg-low: #8a9499;
+
+  --accent: #35c9b4;
+  --accent-bright: #5fe0ce;
+  --accent-deep: #1d8d7f;
+
+  --font-display: 'Afacad Flux', 'Inter', system-ui, sans-serif;
+  --font-text: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: var(--font-text);
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --fs-display: clamp(2.5rem, 5.5vw, 4.5rem);
+  --fs-h2: clamp(1.75rem, 3.2vw, 2.75rem);
+  --fs-h3: clamp(1.25rem, 1.6vw, 1.5rem);
+  --fs-lead: clamp(1.125rem, 1.3vw, 1.375rem);
+  --fs-body: 1.0625rem;
+  --fs-sm: 0.9375rem;
+  --fs-meta: 0.8125rem;
+
+  --lh-display: 0.95;
+  --lh-head: 1.12;
+  --lh-tight: 1.35;
+  --lh-body: 1.6;
+
+  --w-display: 800;
+  --w-head: 600;
+  --w-body: 400;
+  --w-emph: 600;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  --gutter: clamp(1.25rem, 4.5vw, 4rem);
+  --section-y: clamp(4.5rem, 11vh, 9rem);
+  --measure: 66ch;
+  --max-text: 44rem;
+  --max-page: 76rem;
+
+  --radius-2: 4px;
+  --dur-base: 200ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-base: 1ms;
+  }
+}

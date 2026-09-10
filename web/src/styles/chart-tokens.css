@@ -1,0 +1,33 @@
+/* Chart poles only. Teal = pass / tax. Amber = wait / grades. */
+:root {
+  --chart-grep: #22a58f;
+  --chart-vector: #e2703a;
+  --chart-neutral: var(--bg-raised);
+  --chart-grid: var(--line-hairline);
+
+  --chart-1: var(--chart-grep);
+  --chart-2: var(--chart-vector);
+  --chart-3: var(--accent);
+  --chart-4: var(--fg-low);
+  --chart-5: var(--chart-vector);
+  --chart-line-primary: var(--chart-vector);
+  --chart-background: var(--bg-sunk);
+  --chart-foreground: var(--fg-hi);
+  --chart-foreground-muted: var(--fg-low);
+  --chart-label: var(--fg-low);
+  --popover: var(--bg-raised);
+  --popover-foreground: var(--fg-hi);
+  --border: var(--line-rule);
+  --background: var(--bg-page);
+  --color-muted: var(--bg-raised);
+  --muted: var(--bg-raised);
+  --chart-line-secondary: var(--chart-grep);
+  --chart-crosshair: var(--fg);
+  --chart-brush-border: var(--chart-grid);
+  --chart-tooltip-background: rgba(23, 27, 30, 0.92);
+  --chart-tooltip-foreground: var(--fg-hi);
+  --chart-tooltip-muted: var(--fg-low);
+  --chart-marker-background: var(--bg-raised);
+  --chart-marker-border: var(--line-rule);
+  --chart-marker-foreground: var(--fg-hi);
+}

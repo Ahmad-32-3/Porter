@@ -1,0 +1,14 @@
+/bin/
+/dist/
+*.exe
+*.test
+*.out
+coverage.out
+web/node_modules/
+web/dist/
+web/test-results/
+web/playwright-report/
+web/blob-report/
+.env
+.DS_Store
+thumbs.db

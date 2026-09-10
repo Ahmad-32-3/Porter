@@ -1,0 +1,41 @@
+services:
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "no", "--save", ""]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
+    restart: unless-stopped
+
+  campus:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.campus
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8081/ready"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+      start_period: 5s
+    restart: unless-stopped
+
+  porter:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.porter
+    ports:
+      - "8080:8080"
+    depends_on:
+      redis:
+        condition: service_healthy
+      campus:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/__porter/ready"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+      start_period: 8s
+    restart: unless-stopped
